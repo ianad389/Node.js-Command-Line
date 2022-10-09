@@ -1,7 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require('./template');
-
+let teams = []
 const managerQuestions = [
     {
         type: 'input',
@@ -126,8 +126,8 @@ const internquestions = [
     },
     {
         type: 'input',
-        name: 'school   ',
-        message: 'What is the office number?',
+        name: 'school',
+        message: 'What is the name of school?',
         validate: titleInput => {
             if (titleInput) {
                 return true;
@@ -140,7 +140,7 @@ const internquestions = [
     {
         type: 'input',
         name: 'Email',
-        message: 'What is the manager email?',
+        message: 'What is the intern email?',
         validate: titleInput => {
             if (titleInput) {
                 return true;
@@ -153,7 +153,7 @@ const internquestions = [
     {
         type: 'input',
         name: 'Id',
-        message: 'What is the manager id?',
+        message: 'What is the intern id?',
         validate: titleInput => {
             if (titleInput) {
                 return true;
@@ -164,15 +164,44 @@ const internquestions = [
         }
     },
 ]
-
-
-function init() {
-    inquirer.prompt(managerQuestions)
+function addMember() {
+    inquirer.prompt()
         .then(function(answer) {
             console.log(answer);
-  
+            const manager = new Manager(answer.managerName, answer.Id, answer.Email, answer.officeNumber)
+            teams.push(manager)
+            addMember()
         });
 }
 
+
+function createManager() {
+    inquirer.prompt(managerQuestions)
+        .then(function(answer) {
+            console.log(answer);
+            const manager = new Manager(answer.managerName, answer.Id, answer.Email, answer.officeNumber)
+            teams.push(manager)
+            addMember()
+        });
+}
+
+function createEngineer() {
+    inquirer.prompt(engineerQuestions)
+        .then(function(answer) {
+            console.log(answer);
+            const engineer = new Engineer(answer.egineerName, answer.Id, answer.Email, answer.github)
+            teams.push(manager)
+            addMember()
+        });
+}
+function createIntern() {
+    inquirer.prompt(internquestions)
+        .then(function(answer) {
+            console.log(answer);
+            const intern = new intern(answer.internName, answer.Id, answer.Email, answer.school)
+            teams.push(manager)
+            addMember()
+        });
+}
 // Function call to initialize app
 init();
