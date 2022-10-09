@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ianad389/Node.js-Command-Line#readme",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "inquirer": "^8.2.4",
+    "requirer": "^0.0.4"
   }
 }
