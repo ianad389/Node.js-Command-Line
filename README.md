@@ -1,5 +1,5 @@
 # Team Generator
-my job for this task was to create a team generator through node.js. Similiar like the last project. I needed to create an index.js file and what I had to do was make seperate js files for each title for the poisition. Also i needed to create an html file to match the layout which is part of the assignment.
+my job for this task was to create a team generator through node.js. Similiar like the last project. I needed to create an index.js file and what I had to do was make seperate js files for each title for the poisition. Also I needed to create an html file to match the layout which is part of the assignment.
 
 ## Screenshots
 ![App Screenshot](/Screen%20Shot%202022-10-10%20at%206.17.58%20PM.png)
@@ -24,3 +24,7 @@ WHEN I select the intern option
 THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
+
+##
+https://github.com/JamesLJenks
+Was great resource for this project! Thank you James!
