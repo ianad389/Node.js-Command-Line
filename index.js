@@ -1,7 +1,10 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./template');
+const generateTeam = require('./template');
 let teams = []
+const Manager = require('./Lib-JS/Manager')
+const Engineer = require('./Lib-JS/Engineer')
+const Intern = require('./Lib-JS/Intern')
 const managerQuestions = [
     {
         type: 'input',
@@ -165,12 +168,35 @@ const internquestions = [
     },
 ]
 function addMember() {
-    inquirer.prompt()
+    inquirer.prompt([  {type: 'list',
+    name: 'addMember',
+    message: 'Do you want to add another employee?',
+    choices: ["yes", "no"]
+}
+   ])
         .then(function(answer) {
             console.log(answer);
-            const manager = new Manager(answer.managerName, answer.Id, answer.Email, answer.officeNumber)
-            teams.push(manager)
-            addMember()
+        if(answer.addMember === "yes"){addRole()} 
+        else {
+            writeToFile(generateTeam(teams))
+        }
+        
+        });
+}
+function addRole() {
+    inquirer.prompt([  {type: 'list',
+    name: 'addRole',
+    message: 'What kind of team member do you want to add?',
+    choices: ["engineer", "intern"]
+}
+   ])
+        .then(function(answer) {
+            console.log(answer);
+        if(answer.addRole === "engineer"){createEngineer()} 
+        else {
+            createIntern()
+        }
+        
         });
 }
 
@@ -189,8 +215,8 @@ function createEngineer() {
     inquirer.prompt(engineerQuestions)
         .then(function(answer) {
             console.log(answer);
-            const engineer = new Engineer(answer.egineerName, answer.Id, answer.Email, answer.github)
-            teams.push(manager)
+            const engineer = new Engineer(answer.engineerName, answer.Id, answer.Email, answer.github)
+            teams.push(engineer)
             addMember()
         });
 }
@@ -198,10 +224,24 @@ function createIntern() {
     inquirer.prompt(internquestions)
         .then(function(answer) {
             console.log(answer);
-            const intern = new intern(answer.internName, answer.Id, answer.Email, answer.school)
-            teams.push(manager)
+            const intern = new Intern(answer.internName, answer.Id, answer.Email, answer.school)
+            teams.push(intern)
             addMember()
         });
 }
+const writeToFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('index.html', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve({
+                ok: true
+            });
+        });
+    });
+};
+
 // Function call to initialize app
-init();
+createManager();

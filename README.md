@@ -5,6 +5,9 @@ my job for this task was to create a team generator through node.js. Similiar li
 ![App Screenshot](/Screen%20Shot%202022-10-10%20at%206.17.58%20PM.png)
 ![App Screenshot](/Screen%20Shot%202022-10-10%20at%206.18.10%20PM.png)
 ![App Screenshot](/Screen%20Shot%202022-10-10%20at%206.24.19%20PM.png)
+
+# Video Link
+https://watch.screencastify.com/v/7pjCwoujZtnzG5FnO29D
 ## Acceptance Criteria
 
 ```md
